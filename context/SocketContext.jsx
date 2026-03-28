@@ -6,9 +6,16 @@ import { io } from 'socket.io-client';
 const SocketContext = createContext();
 
 export function SocketProvider({ children }) {
+  const INITIAL_GRID = Array(40 * 40).fill(null).map((_, index) => ({
+    id: index,
+    color: '#ffffff',
+    owner: null,
+    ownerName: null,
+  }));
+
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState(null);
-  const [grid, setGrid] = useState([]);
+  const [grid, setGrid] = useState(INITIAL_GRID);
   const [onlineCount, setOnlineCount] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
   const [isConnected, setIsConnected] = useState(false);

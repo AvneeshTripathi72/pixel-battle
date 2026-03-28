@@ -7,7 +7,8 @@ import { Users, User, Circle } from 'lucide-react';
 export default function HUD() {
   const { user, onlineCount, isConnected } = useSocket();
 
-  if (!user) return null;
+  const name = user?.name || 'Connecting...';
+  const color = user?.color || '#e4e4e7';
 
   return (
     <div className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between gap-4">
@@ -15,10 +16,10 @@ export default function HUD() {
         <div className="flex items-center gap-2">
           <div 
             className="w-4 h-4 rounded-full shadow-lg" 
-            style={{ backgroundColor: user.color }} 
+            style={{ backgroundColor: color }} 
           />
           <span className="font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
-            {user.name}
+            {name}
           </span>
         </div>
         <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800 mx-1" />
