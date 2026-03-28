@@ -15,7 +15,6 @@ export async function POST(req) {
     if (updatedTile) {
       const newLeaderboard = await getLeaderboard();
       
-      // Trigger Pusher update
       await pusherServer.trigger('pixel-canvas', 'tileUpdate', {
         tile: updatedTile,
         leaderboard: newLeaderboard

@@ -17,7 +17,6 @@ export function SocketProvider({ children }) {
   const [leaderboard, setLeaderboard] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
 
-  // Initialize randomized user once
   useEffect(() => {
     const adjs = ['Swift', 'Neon', 'Cool', 'Epic', 'Turbo', 'Hyper', 'Nova', 'Flash'];
     const nouns = ['Pixel', 'Cursor', 'Gamer', 'Bot', 'Wiz', 'Ghost', 'Sonic', 'Rider'];
@@ -30,7 +29,6 @@ export function SocketProvider({ children }) {
     };
     setUser(guestUser);
     
-    // Initial fetch of grid & leaderboard
     fetch('/api/pixel')
       .then(res => res.json())
       .then(data => {
@@ -43,7 +41,6 @@ export function SocketProvider({ children }) {
         setIsConnected(false);
       });
 
-    // Subscribe to Pusher updates
     const channel = pusher.subscribe('pixel-canvas');
     
     channel.bind('tileUpdate', (data) => {
@@ -65,7 +62,6 @@ export function SocketProvider({ children }) {
   const handleTileClick = async (tileId) => {
     if (!user) return;
 
-    // Optimistic update
     setGrid((prev) => {
       const next = [...prev];
       next[tileId] = { ...next[tileId], color: user.color, ownerName: user.name };
@@ -82,7 +78,6 @@ export function SocketProvider({ children }) {
       if (!res.ok) throw new Error('Update failed');
     } catch (err) {
       console.error('Action failed:', err);
-      // Revert handle can be complex, skipping for now
     }
   };
 

@@ -9,7 +9,6 @@ import { MousePointer2, Sparkles } from 'lucide-react';
 export default function GameBoard() {
   return (
     <div className="relative min-h-[100dvh] w-full flex items-center justify-center bg-[#fafafa] dark:bg-[#09090b] overflow-hidden p-6">
-      {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20 dark:opacity-10 mix-blend-multiply transition-opacity">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-300 dark:bg-blue-900 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-300 dark:bg-purple-900 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
